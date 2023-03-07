@@ -23,9 +23,17 @@ import androidx.navigation.NavController
 import com.example.composeschedule.R
 import com.example.composeschedule.navigation.Screen
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 
-fun SignInScreen(navController: NavController) {
+
+fun RegisterScreen(navController: NavController) {
+
+    val options = listOf("Студент", "Преподаватель")
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOptionText by remember { mutableStateOf(options[0]) }
+
+
     var value by remember {
         mutableStateOf("")
 
@@ -35,10 +43,11 @@ fun SignInScreen(navController: NavController) {
         mutableStateOf((""))
     }
 
-
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.White))
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    )
     {
         Column(modifier = Modifier.fillMaxWidth()) {
             TextButton(
@@ -75,14 +84,54 @@ fun SignInScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(top = 20.dp)
             ) {
-                Text(text = "Вход в ТГУ.Аккаунт", fontSize = 30.sp)
+                Text(text = "Регистрация", fontSize = 30.sp)
+
+                //Выпадающий список роли
+                ExposedDropdownMenuBox(modifier = Modifier.padding(top = 20.dp),
+                    expanded = expanded,
+                    onExpandedChange = {
+                        expanded = !expanded
+                    }
+                ) {
+                    TextField(
+                        readOnly = true,
+                        value = selectedOptionText,
+                        onValueChange = { },
+                        label = { Text("Выберите роль") },
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(
+                                expanded = expanded
+                            )
+                        },
+                        colors = ExposedDropdownMenuDefaults.textFieldColors()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = {
+                            expanded = false
+                        }
+                    ) {
+                        options.forEach { selectionOption ->
+                            DropdownMenuItem(
+                                onClick = {
+                                    selectedOptionText = selectionOption
+                                    expanded = false
+                                }
+                            ) {
+                                Text(text = selectionOption)
+                            }
+                        }
+                    }
+                }
+
+
                 TextField(
                     value = value,
                     onValueChange = { newText ->
                         value = newText
                     },
                     placeholder = { Text(text = "E-mail") },
-                    modifier = Modifier.padding(top = 20.dp)
+                    modifier = Modifier.padding(top = 10.dp)
                 )
                 TextField(
                     value = passValue,

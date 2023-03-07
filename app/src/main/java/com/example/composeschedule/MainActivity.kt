@@ -7,7 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composeschedule.navigation.Navigation
 import com.example.composeschedule.ui.presentation.SignInScreen
 
-//ddididdif
+//ddididdi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
