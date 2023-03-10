@@ -10,11 +10,10 @@ import com.example.composeschedule.ui.presentation.*
 @Composable
 fun Navigation(navController: NavHostController) {
 
-    NavHost(navController = navController, startDestination = Screen.MainScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.ScheduleScreen.route) {
         composable(route = Screen.SignInScreen.route) {
             SignInScreen(navController = navController)
         }
-
         composable(route = Screen.MainScreen.route) {
             MainScreen(navController = navController)
         }
@@ -26,6 +25,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(route = Screen.ListScreen.route){
             ListScreen(navController = navController)
+        }
+        composable(route = Screen.ScheduleScreen.route){
+            ScheduleScreen(navController = navController)
         }
     }
 }

@@ -1,11 +1,8 @@
 package com.example.composeschedule.ui.presentation
 
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.composeschedule.R
+import com.example.composeschedule.navigation.Screen
 
 @Composable
 
@@ -42,7 +40,8 @@ fun ListScreen(navController: NavController) {
                 Text(
                     text = "Выберите ***",
                     fontSize = 30.sp,
-                    modifier = Modifier.padding(top = 5.dp, bottom = 20.dp, start = 35.dp)
+                    modifier = Modifier.padding(top = 5.dp, bottom = 20.dp, start = 35.dp).clickable(onClick = {navController.navigate(
+                        Screen.ScheduleScreen.route)})
                 )
 
                 /*SearchBar(text = "", onTextChange = {}, onCloseClicked = { /*TODO*/ }) {

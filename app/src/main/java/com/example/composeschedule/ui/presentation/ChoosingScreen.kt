@@ -41,7 +41,7 @@ fun ChoosingScreen(navController: NavController) {
             Image(painterResource(id = R.drawable.prep), contentDescription = null, modifier = Modifier.size(width= 340.dp, height = 120.dp).clickable(onClick = {navController.navigate(
                 Screen.ListScreen.route)}))
 
-            Text(text = "Есть ТГУ.Аккаунт?", fontSize = 18.sp, modifier = Modifier.padding(top = 260.dp), textDecoration = TextDecoration.Underline, color = Color(0, 108, 190))
+            Text(text = "Есть ТГУ.Аккаунт?", fontSize = 18.sp, modifier = Modifier.padding(top = 260.dp).clickable(onClick = {navController.navigate(Screen.SignInScreen.route)}), textDecoration = TextDecoration.Underline, color = Color(0, 108, 190))
 
         }
 

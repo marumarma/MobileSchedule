@@ -6,14 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.example.composeschedule.navigation.Navigation
 import com.example.composeschedule.ui.presentation.SignInScreen
+import com.example.composeschedule.ui.theme.ComposeScheduleTheme
 
 //ddididdi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            Navigation(navController)
+            ComposeScheduleTheme{
+                val navController = rememberNavController()
+                Navigation(navController)
+            }
         }
     }
 }
