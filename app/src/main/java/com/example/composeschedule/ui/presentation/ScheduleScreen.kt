@@ -1,5 +1,6 @@
 package com.example.composeschedule.ui.presentation
 
+import android.os.Bundle
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,16 +18,19 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.composeschedule.R
+import com.example.composeschedule.navigation.DATA
+import com.example.composeschedule.navigation.NAME
 import com.example.composeschedule.navigation.Screen
+import com.example.composeschedule.navigation.TYPE
 import com.mrerror.singleRowCalendar.SingleRowCalendar
 import java.util.*
 
 @Composable
 
-fun ScheduleScreen(navController: NavController) {
+fun ScheduleScreen(navController: NavController, id : Bundle) {
     var day by remember { mutableStateOf(Date()) }
     val viewModel : ScheduleViewModel = viewModel()
-    viewModel.getClass()
+    viewModel.getClass(id.getString(DATA).toString(), id.getString(TYPE).toString(), id.getString(NAME).toString() ,day)
     Column(Modifier.fillMaxWidth()) {
 
         Column(
@@ -41,12 +45,19 @@ fun ScheduleScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(text = "         ")
-                Text(
-                    text = "Группа 972103",
-                    fontSize = 16.sp,
-                    color = Color.Black,
-                    modifier = Modifier.padding(top = 10.dp)
-                )
+                when(viewModel.schedule_type){
+                    "GROUP" -> {
+                        headgr(viewModel())
+                    }
+                    "TEACHER" -> {
+                        headte(viewModel())
+                    }
+                    "CLASSROOM" -> {
+                        headcl(viewModel())
+                    }
+
+                }
+
                 Icon(
                     painter = painterResource(id = R.drawable.logout),
                     tint = Color(0, 108, 190),
@@ -63,6 +74,7 @@ fun ScheduleScreen(navController: NavController) {
             SingleRowCalendar(
                 onSelectedDayChange = {
                     day = it
+                    viewModel.getClass(data = it)
                 }, selectedDayBackgroundColor = Color(0, 108, 190),
             )
             Box(
@@ -337,4 +349,33 @@ fun ScheduleScreen(navController: NavController) {
     }
 
 }
+@Composable
+fun headgr(viewModel: ScheduleViewModel){
 
+    Text(
+        text = "Группа" + " " + viewModel.schedule_name,
+        fontSize = 16.sp,
+        color = Color.Black,
+        modifier = Modifier.padding(top = 10.dp)
+    )
+}
+@Composable
+fun headte(viewModel: ScheduleViewModel){
+
+    Text(
+        text = viewModel.schedule_name,
+        fontSize = 16.sp,
+        color = Color.Black,
+        modifier = Modifier.padding(top = 10.dp)
+    )
+}
+@Composable
+fun headcl(viewModel: ScheduleViewModel){
+
+    Text(
+        text = "Аудитория" + " " + viewModel.schedule_name,
+        fontSize = 16.sp,
+        color = Color.Black,
+        modifier = Modifier.padding(top = 10.dp)
+    )
+}

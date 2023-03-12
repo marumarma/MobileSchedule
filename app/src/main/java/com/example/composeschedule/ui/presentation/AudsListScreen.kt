@@ -76,7 +76,9 @@ fun AudsListScreen(navController: NavController) {
                                 Text(
                                     text = viewModel.classrooms!![i].classrooms[j].name + ", " + viewModel.classrooms!![i].address,
                                     fontSize = 20.sp,
-                                    modifier = Modifier.padding(vertical = 18.dp).padding(start = 10.dp),
+                                    modifier = Modifier.padding(vertical = 18.dp).padding(start = 10.dp).clickable(onClick = {
+                                        navController.navigate((Screen.ScheduleScreen.passScheduleInfo(viewModel.classrooms!![i].classrooms[j].id.toString(), "CLASSROOM", viewModel.classrooms!![i].classrooms[j].name.toString() + ", " + viewModel.classrooms!![i].address.toString())))
+                                    }),
                                     color = Color.Gray
                                 )
                                 Divider(color = Color.Gray, thickness = 1.dp)

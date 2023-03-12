@@ -1,28 +1,22 @@
 package com.example.composeschedule.navigation
 
-const val STUDENT_DATA = "student_data"
-const val TEACHER_DATA = "teacher_data"
-const val SCHEDULE_TYPE = "schedule_type"
-const val DATA_ID = "data_id"
+const val DATA = "data"
+const val TYPE = "type"
+const val NAME = "name"
 sealed class Screen(val route: String) {
     object SignInScreen : Screen("sign_in_screen")
-    object MainScreen : Screen("main_screen/{$SCHEDULE_TYPE}/{$DATA_ID}"){
-        fun passScheduleInfo(
-            type: String,
-            dataId: String,
-            //data: String? = null
-        ): String = "main_screen/$type/$dataId"
-    }
+    object MainScreen : Screen("main_screen")
     object RegisterScreen : Screen("register_screen")
-    object ChoosingScreen : Screen("choosing_screen/{$STUDENT_DATA}/{$TEACHER_DATA}"){
-        fun passScheduleInfo(
-            studentData: String,
-            teacherData: String
-        ): String = "choice_screen/$studentData/$teacherData"
-    }
+    object ChoosingScreen : Screen("choosing_screen")
     object GroupsListScreen : Screen("groupslist_screen")
     object TeachersListScreen : Screen("teacherslist_screen")
     object AudsListScreen : Screen("audslist_screen")
-    object ScheduleScreen : Screen("schedule_screen")
+    object ScheduleScreen : Screen("schedule_screen/{$DATA}/{$TYPE}/{$NAME}"){
+        fun passScheduleInfo(
+            data : String,
+            type: String,
+            name : String
+        ): String = "schedule_screen/$data/$type/$name"
+    }
 
 }

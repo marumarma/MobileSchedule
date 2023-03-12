@@ -73,7 +73,7 @@ fun TeachersListScreen(navController: NavController) {
                             Text(
                                 text = viewModel.teachers!![i].name,
                                 fontSize = 20.sp,
-                                modifier = Modifier.padding(vertical = 18.dp).padding(start = 10.dp),
+                                modifier = Modifier.padding(vertical = 18.dp).padding(start = 10.dp).clickable(onClick = {navController.navigate((Screen.ScheduleScreen.passScheduleInfo(viewModel.teachers!![i].id.toString(), "TEACHER", viewModel.teachers!![i].name)))}),
                                 color = Color.Gray
                             )
                             Divider(color = Color.Gray, thickness = 1.dp)

@@ -83,7 +83,7 @@ fun GroupsListScreen(navController: NavController) {
                                 modifier = Modifier
                                     .padding(vertical = 18.dp)
                                     .padding(start = 10.dp)
-                                    .clickable(onClick = {navController.navigate(Screen.ScheduleScreen.route)}),
+                                    .clickable(onClick = {navController.navigate(Screen.ScheduleScreen.passScheduleInfo(viewModel.groups!![i].id.toString(), "GROUP", viewModel.groups!![i].name))}),
                                 color = Color.Gray,
                             )
                             Divider(color = Color.Gray, thickness = 1.dp)
