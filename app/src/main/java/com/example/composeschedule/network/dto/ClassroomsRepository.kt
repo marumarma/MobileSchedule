@@ -2,7 +2,7 @@ package com.example.composeschedule.network.dto
 
 import com.example.composeschedule.network.ClassroomsApi
 import com.example.composeschedule.network.Network
-
+@kotlinx.serialization.Serializable
 class ClassroomsRepository {
 
     private val api: ClassroomsApi = Network.getClassroomsApi()

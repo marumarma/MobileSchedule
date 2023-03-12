@@ -1,5 +1,6 @@
 package com.example.composeschedule.network
 
+import com.example.composeschedule.network.dto.ClassDto
 import com.example.composeschedule.network.dto.CorpusDto
 import com.example.composeschedule.network.dto.GroupDto
 import com.example.composeschedule.network.dto.TeacherDto
@@ -48,8 +49,10 @@ object Network {
     var groups : List<GroupDto> ?= null
     var teachers : List<TeacherDto> ?= null
     var classrooms : List<CorpusDto> ?= null
+    var clas : List<ClassDto> ?= null
 
     fun getGroupsApi(): GroupsApi = retrofit.create(GroupsApi::class.java)
     fun getTeachersApi(): TeachersApi = retrofit.create(TeachersApi::class.java)
     fun getClassroomsApi(): ClassroomsApi = retrofit.create(ClassroomsApi::class.java)
+    fun getClassApi(): ClassApi = retrofit.create(ClassApi::class.java)
 }

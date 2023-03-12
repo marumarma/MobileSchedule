@@ -82,8 +82,9 @@ fun GroupsListScreen(navController: NavController) {
                                 fontSize = 20.sp,
                                 modifier = Modifier
                                     .padding(vertical = 18.dp)
-                                    .padding(start = 10.dp),
-                                color = Color.Gray
+                                    .padding(start = 10.dp)
+                                    .clickable(onClick = {navController.navigate(Screen.ScheduleScreen.route)}),
+                                color = Color.Gray,
                             )
                             Divider(color = Color.Gray, thickness = 1.dp)
                         }

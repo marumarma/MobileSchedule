@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.composeschedule.R
 import com.example.composeschedule.navigation.Screen
@@ -24,6 +25,8 @@ import java.util.*
 
 fun ScheduleScreen(navController: NavController) {
     var day by remember { mutableStateOf(Date()) }
+    val viewModel : ScheduleViewModel = viewModel()
+    viewModel.getClass()
     Column(Modifier.fillMaxWidth()) {
 
         Column(
