@@ -2,5 +2,7 @@ package com.example.composeschedule.network.dto
 
 @kotlinx.serialization.Serializable
 data class TokenResponse (
-    val token: String
+    val token: String,
+    val user: UserDto
 )
+

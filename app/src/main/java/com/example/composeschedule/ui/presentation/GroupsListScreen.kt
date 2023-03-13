@@ -1,12 +1,14 @@
 package com.example.composeschedule.ui.presentation
 
 
+import android.provider.ContactsContract.Groups
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -75,15 +77,15 @@ fun GroupsListScreen(navController: NavController) {
                                 rememberScrollState()
                             )
 
-                    ) {
-                        for (i in 0..viewModel.groups!!.size-1) {
+                    ) {val state = viewModel.groups.collectAsState().value
+                        for (i in 0..state.size-1) {
                             Text(
-                                text = viewModel.groups!![i].name,
+                                text = state[i].name,
                                 fontSize = 20.sp,
                                 modifier = Modifier
                                     .padding(vertical = 18.dp)
                                     .padding(start = 10.dp)
-                                    .clickable(onClick = {navController.navigate(Screen.ScheduleScreen.passScheduleInfo(viewModel.groups!![i].id.toString(), "GROUP", viewModel.groups!![i].name))}),
+                                    .clickable(onClick = {navController.navigate(Screen.ScheduleScreen.passScheduleInfo(state[i].id.toString(), "GROUP", state[i].name))}),
                                 color = Color.Gray,
                             )
                             Divider(color = Color.Gray, thickness = 1.dp)

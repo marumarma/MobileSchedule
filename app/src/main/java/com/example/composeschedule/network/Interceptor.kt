@@ -7,11 +7,11 @@ class Interceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val request: Request = chain.request().newBuilder().apply {
-            //addHeader("Accept", "application/json")
-            //addHeader("Content-Type", "application/json")
-            /*Network.token?.let {
+            addHeader("Accept", "application/json")
+            addHeader("Content-Type", "application/json")
+            Network.token?.let {
             addHeader("Authorization", "Bearer ${it.token}")
-        }*/
+        }
         }.build()
 
         var response: Response? = null

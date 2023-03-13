@@ -34,7 +34,11 @@ import java.util.*
 fun ScheduleScreen(navController: NavController, id : Bundle) {
     var day by remember { mutableStateOf(Date()) }
     val viewModel : ScheduleViewModel = viewModel()
-    viewModel.getClass(id.getString(DATA).toString(), id.getString(TYPE).toString(), id.getString(NAME).toString() ,day)
+    if (!viewModel.haveRequest.value){
+        day = viewModel.getDate()
+        viewModel.getClass(id.getString(DATA).toString(), id.getString(TYPE).toString(), id.getString(NAME).toString() ,day)
+    }
+
     Column(Modifier.fillMaxWidth()) {
 
         Column(

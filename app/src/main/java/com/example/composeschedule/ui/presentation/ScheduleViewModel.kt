@@ -17,16 +17,13 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class ScheduleViewModel : ViewModel() {
-    private val _haveRequest = mutableStateOf(false)
      var schedule_id = ""
      var schedule_type = ""
     var schedule_name = ""
-    var haveRequest : State<Boolean> = _haveRequest
+    var haveRequest = mutableStateOf(false)
     val repository = ClassRepository()
     var clas = MutableStateFlow<List<ClassDto>>(listOf())
     val classLiveData = MutableLiveData(clas)
-
-
 
 
     @SuppressLint("SimpleDateFormat")
@@ -53,7 +50,7 @@ class ScheduleViewModel : ViewModel() {
                 classroom_id = null
             )
             clas.value = Network.clas
-            _haveRequest.value = true
+            haveRequest.value = true
         }
     }
     private fun gette(id: String,  data : String){
@@ -65,7 +62,7 @@ class ScheduleViewModel : ViewModel() {
                 classroom_id = null
             )
             clas.value = Network.clas
-            _haveRequest.value = true
+            haveRequest.value = true
         }
     }
     private fun getcl(id: String,  data : String){
@@ -77,7 +74,24 @@ class ScheduleViewModel : ViewModel() {
                 classroom_id = id.toInt()
             )
             clas.value = Network.clas
-            _haveRequest.value = true
+            haveRequest.value = true
         }
+    }
+
+    @SuppressLint
+    fun getDate(): Date {
+        val calendar = Calendar.getInstance()
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+
+        var selDay = calendar.get(Calendar.DAY_OF_WEEK)
+
+        calendar.add(Calendar.WEEK_OF_MONTH, 0)
+        calendar[Calendar.DAY_OF_WEEK] = calendar.firstDayOfWeek
+
+        val days: ArrayList<Date> = arrayListOf()
+
+        days.add(calendar.time)
+
+        return days[0]
     }
 }
