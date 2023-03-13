@@ -378,7 +378,10 @@ fun getCard(viewModel: ScheduleViewModel, i: Int, day : Date){
     }else if(weekDay == "Sun"){
 
         emptySchedule()
+    }else {
+        emptySchedule()
     }
+
 
 
 
@@ -397,7 +400,7 @@ fun oneCard(subjectName: String, teacherName: String, audName: String, buildName
             .padding(10.dp),
         shape = RoundedCornerShape(17.dp),
         elevation = 5.dp,
-        border = BorderStroke(3.dp, Color(242, 203, 0)),
+        border = BorderStroke(3.dp, Color(0, 108, 190)),
         content = {
             //полная карточка
             Column(
@@ -418,10 +421,10 @@ fun oneCard(subjectName: String, teacherName: String, audName: String, buildName
                     )
                     Card(
                         shape = RoundedCornerShape(8.dp),
-                        backgroundColor = Color(242, 203, 0)
+                        backgroundColor = Color(0, 108, 190)
                     ) {
                         Text(
-                            text = "Семинар",
+                            text = "Пара",
                             color = Color.White,
                             modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 1.dp, bottom = 1.dp)
                         )
@@ -445,7 +448,7 @@ fun oneCard(subjectName: String, teacherName: String, audName: String, buildName
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(text = startTime + " - " + endTime, color = Color(242, 203, 0), fontSize = 20.sp)
+                    Text(text = startTime + " - " + endTime, color = Color(0, 108, 190), fontSize = 20.sp)
                     Text(text = lesNumber)
 
                 }
