@@ -11,6 +11,7 @@ data class ClassDto(
     val period : Int,
     val created_at : String,
     val updated_at : String,
+    val date : String,
     val subject : SubjectDto,
     val teacher : TeacherDto,
     val classroom : PlaceDto,

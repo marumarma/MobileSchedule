@@ -5,13 +5,14 @@ import android.icu.text.SimpleDateFormat
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.composeschedule.network.ClassRepository
 import com.example.composeschedule.network.GroupsRepository
 import com.example.composeschedule.network.Network
 import com.example.composeschedule.network.RegisterRequestBody
+import com.example.composeschedule.network.dto.ClassDto
 import com.example.composeschedule.network.dto.ClassRequestBody
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -22,7 +23,12 @@ class ScheduleViewModel : ViewModel() {
     var schedule_name = ""
     var haveRequest : State<Boolean> = _haveRequest
     val repository = ClassRepository()
-    var clas = Network.clas
+    var clas = MutableStateFlow<List<ClassDto>>(listOf())
+    val classLiveData = MutableLiveData(clas)
+
+
+
+
     @SuppressLint("SimpleDateFormat")
     fun getClass(id: String = schedule_id, type: String = schedule_type, name : String = schedule_name, data : Date){
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -46,7 +52,7 @@ class ScheduleViewModel : ViewModel() {
                 teacher_id = null,
                 classroom_id = null
             )
-            clas = Network.clas
+            clas.value = Network.clas
             _haveRequest.value = true
         }
     }
@@ -58,7 +64,7 @@ class ScheduleViewModel : ViewModel() {
                 teacher_id = id.toInt(),
                 classroom_id = null
             )
-            clas = Network.clas
+            clas.value = Network.clas
             _haveRequest.value = true
         }
     }
@@ -70,7 +76,7 @@ class ScheduleViewModel : ViewModel() {
                 teacher_id = null,
                 classroom_id = id.toInt()
             )
-            clas = Network.clas
+            clas.value = Network.clas
             _haveRequest.value = true
         }
     }
