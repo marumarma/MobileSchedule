@@ -58,11 +58,11 @@ class SignInViewModel : ViewModel() {
                         password = _password.value.toString()
                     )
                 ).collect{}
-                if(Network.token!!.user.group_id != null){
-                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.group_id.toString(), "GROUP", Network.token!!.user.group_id.toString()))
+                if(Network.token!!.user.group != null){
+                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.group_id.toString(), "GROUP", Network.token!!.user.group!!.name))
                 }
-                if(Network.token!!.user.teacher_id != null){
-                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.teacher_id.toString(), "TEACHER", Network.token!!.user.teacher_id.toString()))
+                if(Network.token!!.user.teacher != null){
+                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.teacher_id.toString(), "TEACHER", Network.token!!.user.teacher!!.name))
                 }
 
             }catch(rethrow: CancellationException) {

@@ -16,6 +16,6 @@ interface AuthApi {
     suspend fun register(@Body body : RegisterRequestBody): TokenResponse
 
     @POST("api/auth/logout")
-    suspend fun logout(): TokenResponse
+    suspend fun logout()
 
 }

@@ -66,17 +66,8 @@ fun ScheduleScreen(navController: NavController, id : Bundle) {
 
                 }
 
-                Icon(
-                    painter = painterResource(id = R.drawable.logout),
-                    tint = Color(0, 108, 190),
-                    contentDescription = "", modifier = Modifier
-                        .size(35.dp)
-                        .clickable(onClick = {
-                            navController.navigate(
-                                Screen.MainScreen.route
-                            )
-                        })
-                )
+                leave(viewModel, navController)
+
             }
             //туть
             var simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -366,7 +357,7 @@ fun getCard(viewModel: ScheduleViewModel, i: Int, day : Date){
         else if (number == 41 ){
             lesNumber = "6-я пара"
         }
-        else if (number == 41){
+        else if (number == 42){
             lesNumber = "7-я пара"
         }
         oneCard(
@@ -381,8 +372,6 @@ fun getCard(viewModel: ScheduleViewModel, i: Int, day : Date){
         )
     }else if(weekDay == "Sun"){
 
-        emptySchedule()
-    }else {
         emptySchedule()
     }
 
@@ -459,4 +448,15 @@ fun oneCard(subjectName: String, teacherName: String, audName: String, buildName
 
             }
         })
+}
+
+@Composable
+fun leave(scheduleViewModel: ScheduleViewModel, navController: NavController){
+    Icon(
+        painter = painterResource(id = R.drawable.logout),
+        tint = Color(0, 108, 190),
+        contentDescription = "", modifier = Modifier
+            .size(35.dp)
+            .clickable(onClick = { scheduleViewModel.logout(navController) })
+    )
 }

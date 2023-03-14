@@ -6,12 +6,12 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.*
-import com.example.composeschedule.network.ClassRepository
-import com.example.composeschedule.network.GroupsRepository
-import com.example.composeschedule.network.Network
-import com.example.composeschedule.network.RegisterRequestBody
+import androidx.navigation.NavController
+import com.example.composeschedule.navigation.Screen
+import com.example.composeschedule.network.*
 import com.example.composeschedule.network.dto.ClassDto
 import com.example.composeschedule.network.dto.ClassRequestBody
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.util.*
@@ -93,5 +93,25 @@ class ScheduleViewModel : ViewModel() {
         days.add(calendar.time)
 
         return days[0]
+    }
+
+    fun logout(navController: NavController) {
+        val repositoryAuth = AuthRepository()
+        viewModelScope.launch {
+            try {
+                repositoryAuth.logout(
+                )
+                navController.navigate(Screen.MainScreen.route)
+
+            } catch (rethrow: CancellationException) {
+                throw rethrow
+            } catch (ex: Exception) {
+                if (ex.message == "HTTP 401 Unauthorized") {
+                    navController.navigate(Screen.MainScreen.route)
+
+                }
+
+            }
+        }
     }
 }

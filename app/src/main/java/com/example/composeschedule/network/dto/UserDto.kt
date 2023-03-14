@@ -11,7 +11,9 @@ data class UserDto(
     val two_factor_recovery_codes: String? = "",
     val is_admin: Boolean,
     val group_id: Int? = null,
-    val teacher_id: Int? = null
+    val teacher_id: Int? = null,
+    val group: GroupDto? = null,
+    val teacher: TeacherDto? = null
 )
 /*"user": {
     "id": 2,

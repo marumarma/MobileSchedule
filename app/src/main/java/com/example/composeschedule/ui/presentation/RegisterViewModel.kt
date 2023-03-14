@@ -70,12 +70,12 @@ class RegisterViewModel : ViewModel() {
                     RegisterRequestBody(
                         name = _name.value,
                         email = _email.value,
-                        password = _password.value.toString(),
+                        password = _password.value,
                         group_id = _group.value.toInt()
                     )
                 ).collect{}
-                if(Network.token!!.user.group_id != null){
-                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.group_id.toString(), "GROUP", Network.token!!.user.group_id.toString()))
+                if(Network.token!!.user.group != null){
+                    navController.navigate(Screen.ScheduleScreen.passScheduleInfo(Network.token!!.user.group_id.toString(), "GROUP", Network.token!!.user.group!!.name))
                 }
 
             }catch(rethrow: CancellationException) {

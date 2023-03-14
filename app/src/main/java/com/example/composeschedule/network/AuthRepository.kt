@@ -22,4 +22,9 @@ class AuthRepository {
         Network.token = tokenData
         emit(tokenData)
     }.flowOn(Dispatchers.IO)
+
+    suspend fun logout(){
+        api.logout()
+        Network.token = null
+    }
 }
